@@ -1,0 +1,52 @@
+[{
+  "bookSourceComment": "",
+  "bookSourceGroup": "Namo",
+  "bookSourceName": "Asianovel",
+  "bookSourceType": 0,
+  "bookSourceUrl": "https://www.asianovel.net",
+  "bookUrlPattern": "",
+  "concurrentRate": "",
+  "customOrder": -17,
+  "enabled": true,
+  "enabledCookieJar": false,
+  "enabledExplore": true,
+  "exploreUrl": "[{\"title\":\"Rank By\",\"url\":\"\",\"style\": {\"layout_flexGrow\": 0,\"layout_flexBasisPercent\": 1}}, {\"title\":\"Date\",\"url\":\"https://www.asianovel.net/rank-by-date/page/{{page}}\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"Daily\",\"url\":\"https://www.asianovel.net/rank-by-daily/page/{{page}}\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"Weekly\",\"url\":\"https://www.asianovel.net/rank-by-weekly/page/{{page}}\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"Monthly\",\"url\":\"https://www.asianovel.net/rank-by-monthly/page/{{page}}\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"Categories\",\"url\":\"\",\"style\": {\"layout_flexGrow\": 0,\"layout_flexBasisPercent\": 1}},{\"title\":\"Manual\",\"url\":\"https://www.asianovel.net/categories/manual?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"MTL\",\"url\":\"https://www.asianovel.net/categories/mtl?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"POST-EDITING\",\"url\":\"https://www.asianovel.net/categories/post-editing?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"BL\",\"url\":\"https://www.asianovel.net/categories/boylove?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"Romance\",\"url\":\"https://www.asianovel.net/categories/romance?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"Historical\",\"url\":\"https://www.asianovel.net/categories/history?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"Fantasy\",\"url\":\"https://www.asianovel.net/categories/fantasy?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"Xianxia\",\"url\":\"https://www.asianovel.net/categories/xianxia?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"Slice-Of-Life\",\"url\":\"https://www.asianovel.net/categories/slice-of-life?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}}]",
+  "lastUpdateTime": 0,
+  "loginUrl": "",
+  "ruleBookInfo": {
+    "author": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[2]/header/h6/span[2]/a/text()",
+    "coverUrl": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[1]/a/img/@data-src",
+    "intro": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[2]/div/div/text()",
+    "kind": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[2]/div/h6[1]/a/text()",
+    "lastChapter": "//*[@id=\"container\"]/div[1]/main/div/div[1]/article[1]/div/div/header/h5/a/text()",
+    "name": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[2]/header/h5/a/text()"
+  },
+  "ruleContent": {
+    "content": "//*[@id=\"container\"]/div[1]/main/div[2]/article/div/text()"
+  },
+  "ruleExplore": {
+    "bookList": "//*[@id=\"container\"]/div[1]/main/div/div/article",
+    "coverUrl": "/div/div[1]/a/img/@data-src",
+    "name": "/div/div[2]/header/h5/a/text()",
+    "bookUrl": "/div/div[2]/header/h5/a/@href",
+    "author": "/div/div[2]/header/h6/span[2]/a/text()",
+    "kind": "/div/div[2]/div/h6[1]/a/text()",
+    "intro": "/div/div[2]/div/div/text()"
+  },
+  "ruleSearch": {
+    "author": "/div/div[2]/header/h6/span[2]/a/text()",
+    "bookList": "//*[@id=\"container\"]/div[1]/main/div/article",
+    "bookUrl": "/div/div[2]/header/h5/a/@href",
+    "coverUrl": "/div/div[1]/a/img/@data-src",
+    "kind": "/div/div[2]/div/h6[1]/a/text()",
+    "name": "/div/div[2]/header/h5/a/text()",
+    "intro": "/div/div[2]/div/div/text()"
+  },
+  "ruleToc": {
+    "chapterList": "//*[@id=\"container\"]/div[1]/main/div/div[1]/article",
+    "chapterName": "//a/text()",
+    "chapterUrl": "//a/@href"
+  },
+  "searchUrl": "/search?keyword={{key}},{\"charset\":\"UTF-8\"}",
+  "weight": 0
+}]

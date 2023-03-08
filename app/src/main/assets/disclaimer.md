@@ -1,0 +1,16 @@
+# Disclaimer
+
+* Reader.A is a tool for parsing specified rules and obtaining content, providing a convenient, fast and comfortable trial reading experience for web novel lovers.
+* When you search for a book, Reader will submit the title of the book to various third-party online literature websites in the form of keywords according to the rules you use.
+  The content returned by each third-party website has nothing to do with Reader, and Reader is not responsible for it, nor does it assume any legal responsibility.
+  Any third party web page linked to by using Reader is produced or provided by others. You may obtain other services from the third party web page. Reader is not responsible for its legality, nor assumes any legal responsibility.
+  Third-party search engine results are automatically obtained and provided for trial reading according to the title of the book you submitted. It does not mean that Reader agrees with or is linked to the content or position of the third-party web page.
+  You should use the search engine results at your own risk.
+* Reader does not make any form of guarantee: it does not guarantee that the search results of third-party search engines meet your requirements, does not guarantee that the search service will not be interrupted, and does not guarantee the security, correctness, timeliness, and legality of the search results.
+  Due to any reasons such as network conditions, communication lines, third-party websites, etc., which cause you to fail to use the website normally, the website shall not bear any legal responsibility.
+  Reader respects and protects the personal privacy of all users who use Reader. Your user name, e-mail address and other personal data will not be actively disclosed to third parties without your personal permission or in accordance with the mandatory provisions of relevant laws and regulations.
+* Reader is committed to minimizing the meaningless time wasted by Internet literature readers in the process of self-searching, and displays the latest chapters of Internet literature in different websites through professional searches.
+  While Reader provides a convenient, fast and comfortable trial reading experience for the majority of novel lovers, it also enables the rapid and wider dissemination of excellent online literature, thus achieving the goal of promoting the full prosperity and development of online literature to a certain extent.
+  Reader encourages novel lovers to discover excellent online novels and their providers through Reader, and recommends reading genuine books.
+  Any unit or individual who thinks that the content of a third-party web page linked to by searching through Reader may be suspected of infringing its right of information network dissemination should promptly submit a written notice of rights to Reader, and provide proof of identity, ownership and detailed proof of infringement.
+  Reader will disconnect the relevant link content as soon as possible after receiving the above legal documents.

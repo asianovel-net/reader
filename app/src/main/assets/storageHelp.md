@@ -1,0 +1,2 @@
+* Due to Android's storage access restrictions, reading needs to set up **subdirectories** under the public directory to copy and download books, such as Documents/Books, Download/Books
+* If it is not set, the related functions of local books and webDav books will not be used normally

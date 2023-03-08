@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <net.asianovel.reader.lib.prefs.Preference
+        android:key="update_log"
+        android:title="@string/update_log"
+        app:allowDividerAbove="false"
+        app:allowDividerBelow="false"
+        app:iconSpaceReserved="false" />
+
+    <net.asianovel.reader.lib.prefs.Preference
+        android:key="check_update"
+        android:title="@string/check_update"
+        app:allowDividerAbove="false"
+        app:allowDividerBelow="false"
+        app:iconSpaceReserved="false" />
+
+    <net.asianovel.reader.lib.prefs.PreferenceCategory
+        android:title="@string/contact"
+        app:allowDividerAbove="true"
+        app:allowDividerBelow="false"
+        app:iconSpaceReserved="false"
+        app:layout="@layout/view_preference_category">
+
+        <net.asianovel.reader.lib.prefs.Preference
+            android:key="mail"
+            android:summary="@string/email"
+            android:title="@string/send_mail"
+            app:iconSpaceReserved="false" />
+
+        <net.asianovel.reader.lib.prefs.Preference
+            android:key="git"
+            android:summary="@string/this_github_url"
+            android:title="@string/git_hub"
+            app:iconSpaceReserved="false" />
+
+        <net.asianovel.reader.lib.prefs.Preference
+            android:key="sourceRuleSummary"
+            android:summary="@string/source_rule_url"
+            android:title="@string/source_rule_s"
+            app:iconSpaceReserved="false" />
+
+        <net.asianovel.reader.lib.prefs.Preference
+            android:key="home_page"
+            android:summary="@string/home_page_url"
+            android:title="@string/home_page"
+            app:allowDividerAbove="false"
+            app:allowDividerBelow="false"
+            app:iconSpaceReserved="false" />
+
+    </net.asianovel.reader.lib.prefs.PreferenceCategory>
+
+    <net.asianovel.reader.lib.prefs.PreferenceCategory
+        android:title="@string/other"
+        app:allowDividerAbove="true"
+        app:allowDividerBelow="false"
+        app:iconSpaceReserved="false"
+        app:layout="@layout/view_preference_category">
+
+        <net.asianovel.reader.lib.prefs.Preference
+            android:key="crashLog"
+            android:title="@string/crash_log"
+            app:iconSpaceReserved="false" />
+
+        <net.asianovel.reader.lib.prefs.Preference
+            android:key="license"
+            android:title="@string/license"
+            app:iconSpaceReserved="false" />
+
+        <net.asianovel.reader.lib.prefs.Preference
+            android:key="disclaimer"
+            android:title="@string/disclaimer"
+            app:iconSpaceReserved="false" />
+
+    </net.asianovel.reader.lib.prefs.PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>
