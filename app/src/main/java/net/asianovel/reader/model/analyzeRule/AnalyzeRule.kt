@@ -13,6 +13,7 @@ import net.asianovel.reader.model.webBook.WebBook
 import net.asianovel.reader.utils.*
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
+import org.jsoup.nodes.Document
 import org.jsoup.nodes.Entities
 import org.mozilla.javascript.NativeObject
 import java.net.URL
@@ -657,6 +658,12 @@ class AnalyzeRule(
         bindings["src"] = content
         bindings["nextChapterUrl"] = nextChapterUrl
         return SCRIPT_ENGINE.eval(jsStr, bindings)
+    }
+
+    fun getContentByStat(doc:Document):String{
+        var contentExtractor = ContentExtractor(doc)
+        val formatter = HtmlToPlainText()
+        return formatter.getPlainText(contentExtractor.getContentElement())
     }
 
     override fun getSource(): BaseSource? {

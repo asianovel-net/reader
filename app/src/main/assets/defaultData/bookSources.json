@@ -10,43 +10,187 @@
   "enabled": true,
   "enabledCookieJar": false,
   "enabledExplore": true,
-  "exploreUrl": "[{\"title\":\"Rank By\",\"url\":\"\",\"style\": {\"layout_flexGrow\": 0,\"layout_flexBasisPercent\": 1}}, {\"title\":\"Date\",\"url\":\"https://www.asianovel.net/rank-by-date/page/{{page}}\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"Daily\",\"url\":\"https://www.asianovel.net/rank-by-daily/page/{{page}}\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"Weekly\",\"url\":\"https://www.asianovel.net/rank-by-weekly/page/{{page}}\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"Monthly\",\"url\":\"https://www.asianovel.net/rank-by-monthly/page/{{page}}\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"Categories\",\"url\":\"\",\"style\": {\"layout_flexGrow\": 0,\"layout_flexBasisPercent\": 1}},{\"title\":\"Manual\",\"url\":\"https://www.asianovel.net/categories/manual?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"MTL\",\"url\":\"https://www.asianovel.net/categories/mtl?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"POST-EDITING\",\"url\":\"https://www.asianovel.net/categories/post-editing?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"BL\",\"url\":\"https://www.asianovel.net/categories/boylove?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"Romance\",\"url\":\"https://www.asianovel.net/categories/romance?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"Historical\",\"url\":\"https://www.asianovel.net/categories/history?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"Fantasy\",\"url\":\"https://www.asianovel.net/categories/fantasy?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"Xianxia\",\"url\":\"https://www.asianovel.net/categories/xianxia?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},{\"title\":\"Slice-Of-Life\",\"url\":\"https://www.asianovel.net/categories/slice-of-life?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}}]",
-  "lastUpdateTime": 0,
-  "loginUrl": "",
-  "ruleBookInfo": {
-    "author": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[2]/header/h6/span[2]/a/text()",
-    "coverUrl": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[1]/a/img/@data-src",
-    "intro": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[2]/div/div/text()",
-    "kind": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[2]/div/h6[1]/a/text()",
-    "lastChapter": "//*[@id=\"container\"]/div[1]/main/div/div[1]/article[1]/div/div/header/h5/a/text()",
-    "name": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[2]/header/h5/a/text()"
-  },
-  "ruleContent": {
-    "content": "//*[@id=\"container\"]/div[1]/main/div[2]/article/div/text()"
-  },
-  "ruleExplore": {
-    "bookList": "//*[@id=\"container\"]/div[1]/main/div/div/article",
-    "coverUrl": "/div/div[1]/a/img/@data-src",
-    "name": "/div/div[2]/header/h5/a/text()",
-    "bookUrl": "/div/div[2]/header/h5/a/@href",
-    "author": "/div/div[2]/header/h6/span[2]/a/text()",
-    "kind": "/div/div[2]/div/h6[1]/a/text()",
-    "intro": "/div/div[2]/div/div/text()"
-  },
-  "ruleSearch": {
-    "author": "/div/div[2]/header/h6/span[2]/a/text()",
-    "bookList": "//*[@id=\"container\"]/div[1]/main/div/article",
-    "bookUrl": "/div/div[2]/header/h5/a/@href",
-    "coverUrl": "/div/div[1]/a/img/@data-src",
-    "kind": "/div/div[2]/div/h6[1]/a/text()",
-    "name": "/div/div[2]/header/h5/a/text()",
-    "intro": "/div/div[2]/div/div/text()"
-  },
-  "ruleToc": {
-    "chapterList": "//*[@id=\"container\"]/div[1]/main/div/div[1]/article",
-    "chapterName": "//a/text()",
-    "chapterUrl": "//a/@href"
-  },
-  "searchUrl": "/search?keyword={{key}},{\"charset\":\"UTF-8\"}",
-  "weight": 0
-}]
+  "exploreUrl": "[
+  {\"title\":\"Sort By\",\"url\":\"\",\"style\": {\"layout_flexGrow\": 0,\"layout_flexBasisPercent\": 1}},
+  {\"title\":\"Date\",\"url\":\"https://www.asianovel.net/rank-by-date/page/{{page}}\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+  {\"title\":\"Daily\",\"url\":\"https://www.asianovel.net/rank-by-daily/page/{{page}}\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+  {\"title\":\"Weekly\",\"url\":\"https://www.asianovel.net/rank-by-weekly/page/{{page}}\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+  {\"title\":\"Monthly\",\"url\":\"https://www.asianovel.net/rank-by-monthly/page/{{page}}\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+  {\"title\":\"Categories\",\"url\":\"\",\"style\": {\"layout_flexGrow\": 0,\"layout_flexBasisPercent\": 1}},
+  {\"title\":\"Manual\",\"url\":\"https://www.asianovel.net/categories/manual?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+  {\"title\":\"MTL\",\"url\":\"https://www.asianovel.net/categories/mtl?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+  {\"title\":\"POST-EDITING\",\"url\":\"https://www.asianovel.net/categories/post-editing?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+  {\"title\":\"BL\",\"url\":\"https://www.asianovel.net/categories/boylove?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+  {\"title\":\"Romance\",\"url\":\"https://www.asianovel.net/categories/romance?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+  {\"title\":\"Historical\",\"url\":\"https://www.asianovel.net/categories/history?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+  {\"title\":\"Fantasy\",\"url\":\"https://www.asianovel.net/categories/fantasy?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+  {\"title\":\"Xianxia\",\"url\":\"https://www.asianovel.net/categories/xianxia?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+  {\"title\":\"Slice-Of-Life\",\"url\":\"https://www.asianovel.net/categories/slice-of-life?page={{page}}&orderBy=0\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1
+  }}
+]",
+"lastUpdateTime": 0,
+"loginUrl": "",
+"ruleBookInfo": {
+"author": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[2]/header/h6/span[2]/a/text()",
+"coverUrl": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[1]/a/img/@data-src",
+"intro": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[2]/div/div/text()",
+"kind": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[2]/div/h6[1]/a/text()",
+"lastChapter": "//*[@id=\"container\"]/div[1]/main/div/div[1]/article[1]/div/div/header/h5/a/text()",
+"name": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[2]/header/h5/a/text()"
+},
+"ruleContent": {
+"content": "//*[@id=\"container\"]/div[1]/main/div[2]/article/div/text()"
+},
+"ruleExplore": {
+"bookList":"//*[@id=\"container\"]/div[1]/main/div/div/article",
+"coverUrl":"/div/div[1]/a/img/@data-src",
+"name":"/div/div[2]/header/h5/a/text()",
+"bookUrl":"/div/div[2]/header/h5/a/@href",
+"author":"/div/div[2]/header/h6/span[2]/a/text()",
+"kind":"/div/div[2]/div/h6[1]/a/text()",
+"intro":"/div/div[2]/div/div/text()"
+},
+"ruleSearch": {
+"author":"/div/div[2]/header/h6/span[2]/a/text()",
+"bookList":"//*[@id=\"container\"]/div[1]/main/div/article",
+"bookUrl":"/div/div[2]/header/h5/a/@href",
+"coverUrl":"/div/div[1]/a/img/@data-src",
+"kind":"/div/div[2]/div/h6[1]/a/text()",
+"name":"/div/div[2]/header/h5/a/text()",
+"intro":"/div/div[2]/div/div/text()"
+},
+"ruleToc": {
+"chapterList": "//*[@id=\"container\"]/div[1]/main/div/div[1]/article",
+"chapterName": "//a/text()",
+"chapterUrl": "//a/@href"
+},
+"searchUrl": "/search?keyword={{key}},{\"charset\":\"UTF-8\"}",
+"weight": 0
+},
+{
+"bookSourceComment": "",
+"bookSourceGroup": "Namo",
+"bookSourceName": "Mtlnovel",
+"bookSourceType": 0,
+"bookSourceUrl": "https://www.mtlnovel.com",
+"bookUrlPattern": "",
+"concurrentRate": "",
+"customOrder": -18,
+"enabled": true,
+"enabledCookieJar": false,
+"enabledExplore": true,
+"exploreUrl": "[
+{\"title\":\"Sort By\",\"url\":\"\",\"style\": {\"layout_flexGrow\": 0,\"layout_flexBasisPercent\": 1}},
+{\"title\":\"Daily\",\"url\":\"https://www.mtlnovel.com/daily-rank/page/{{page}}/\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Weekly\",\"url\":\"https://www.mtlnovel.com/weekly-rank/page/{{page}}/\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Monthly\",\"url\":\"https://www.mtlnovel.com/monthly-rank/page/{{page}}/\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"All Time\",\"url\":\"https://www.mtlnovel.com/alltime-rank/page/{{page}}/\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Readers\",\"url\":\"https://www.mtlnovel.com/readers-rank/page/{{page}}/\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Categories\",\"url\":\"\",\"style\": {\"layout_flexGrow\": 0,\"layout_flexBasisPercent\": 1}},
+{\"title\":\"Action\",\"url\":\"https://www.mtlnovel.com/genre/action/page/{{page}}/\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Adult\",\"url\":\"https://www.mtlnovel.com/genre/adult/page/{{page}}/\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Adventure\",\"url\":\"https://www.mtlnovel.com/genre/adventure/page/{{page}}/\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Comedy\",\"url\":\"https://www.mtlnovel.com/genre/comedy/page/{{page}}/\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Drama\",\"url\":\"https://www.mtlnovel.com/genre/drama/page/{{page}}/\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Ecchi\",\"url\":\"https://www.mtlnovel.com/genre/ecchi/page/{{page}}/\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Erciyuan\",\"url\":\"https://www.mtlnovel.com/genre/erciyuan/page/{{page}}/\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Fan-Fiction\",\"url\":\"https://www.mtlnovel.com/genre/fan-fiction/page/{{page}}/\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Fantasy\",\"url\":\"https://www.mtlnovel.com/genre/fantasy/page/{{page}}/\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Game\",\"url\":\"https://www.mtlnovel.com/genre/game/page/{{page}}/\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Gender Bender\",\"url\":\"https://www.mtlnovel.com/genre/gender-bender/page/{{page}}/\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Harem\",\"url\":\"https://www.mtlnovel.com/genre/harem/page/{{page}}/\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Historical\",\"url\":\"https://www.mtlnovel.com/genre/historical/page/{{page}}/\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}}
+]",
+"lastUpdateTime": 0,
+"loginUrl": "",
+"ruleBookInfo": {
+"author": "//td[@id=\"author\"]/a/text()",
+"intro": "//div[@class=\"desc\"]/p[1]/text()",
+"kind": "//td[@id=\"genre\"]//a/text()",
+"lastChapter": " //*[@id=\"panelchapterlist\"]/p/a[1]/span/text()",
+"name": "//h1[@class=\"entry-title\"]/text()"
+},
+"ruleContent": {
+"content": "//p/text()"
+},
+"ruleExplore": {
+"bookList":"class.box",
+"coverUrl":"tag.amp-img.1@src",
+"name":"class.list-title@aria-label",
+"bookUrl":"class.list-title@href",
+"kind":"class.genre@text",
+"intro":"p@text"
+},
+"ruleSearch": {
+"bookList":"$.items[0].results",
+"bookUrl":"$.permalink",
+"coverUrl":"$.thumbnail",
+"name":"$.title##<strong>|</strong>"
+},
+"ruleToc": {
+"chapterList": "class.ch-list@tag.amp-list@src<js>java.log(result[0]);urls=result;java.log(urls);items=[];for (var index in urls){items =items.concat(JSON.parse(java.ajax(urls[index])).items);};</js>",
+"chapterName": "no",
+"chapterUrl": "permalink"
+},
+"searchUrl": "/wp-admin/admin-ajax.php?action=autosuggest&q={{key}},{\"charset\":\"UTF-8\"}",
+"weight": 0
+},
+{
+"bookSourceComment": "",
+"bookSourceGroup": "Namo",
+"bookSourceName": "Novelupdates",
+"bookSourceType": 0,
+"bookSourceUrl": "https://www.novelupdates.com",
+"bookUrlPattern": "",
+"concurrentRate": "",
+"customOrder": -19,
+"enabled": true,
+"enabledCookieJar": false,
+"enabledExplore": true,
+"exploreUrl": "[
+{\"title\":\"Sort By\",\"url\":\"\",\"style\": {\"layout_flexGrow\": 0,\"layout_flexBasisPercent\": 1}},
+{\"title\":\"Chapters\",\"url\":\"https://www.novelupdates.com/novelslisting/?sort=5&order=2&status=1&pg={{page}}\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Frequency\",\"url\":\"https://www.novelupdates.com/novelslisting/?sort=1&order=1&status=1?sort=5&order=2&status=1&pg={{page}}\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Rank\",\"url\":\"https://www.novelupdates.com/novelslisting/?sort=2&order=1&status=1&pg={{page}}\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Readers\",\"url\":\"https://www.novelupdates.com/novelslisting/?sort=4&order=2&status=1&pg={{page}}\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Reviews\",\"url\":\"https://www.novelupdates.com/novelslisting/?sort=6&order=2&status=1&pg={{page}}\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}},
+{\"title\":\"Last Updated\",\"url\":\"https://www.novelupdates.com/novelslisting/?sort=8&order=2&status=1&pg={{page}}\",\"style\": {\"layout_flexGrow\":0.25,\"layout_flexBasisPercent\":-1}}
+]",
+"lastUpdateTime": 0,
+"loginUrl": "",
+"ruleBookInfo": {
+"author":"//*[@id=\"authtag\"]/text()",
+"coverUrl": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[1]/a/img/@data-src",
+"intro": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[2]/div/div/text()",
+"kind": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[2]/div/h6[1]/a/text()",
+"lastChapter": "//*[@id=\"container\"]/div[1]/main/div/div[1]/article[1]/div/div/header/h5/a/text()",
+"name": "//*[@id=\"container\"]/div[1]/main/div/article/div/div[2]/header/h5/a/text()"
+},
+"ruleContent": {
+"content": "<js>java.getContentByStat(org.jsoup.Jsoup.parse(result));</js>"
+},
+"ruleExplore": {
+"bookList":"class.search_main_box_nu",
+"coverUrl":"tag.img@src",
+"name":"class.search_title@tag.a@text",
+"bookUrl":"class.search_title@tag.a@href",
+"kind":"class.search_genre@class.gennew@text",
+"intro":"class.testhide@text"
+},
+"ruleSearch": {
+"bookList":"class.search_main_box_nu",
+"coverUrl":"tag.img@src",
+"name":"class.search_title@tag.a@text",
+"bookUrl":"class.search_title@tag.a@href",
+"kind":"class.search_genre@class.gennew@text",
+"intro":"class.testhide@text"
+},
+"ruleToc": {
+"chapterList": "<js>doc=org.jsoup.Jsoup.parse(java.ajax(baseUrl));postId=doc.select('#mypostid').attr('value');body={\"action\":\"nd_getchapters\",\"mygrr\":0,\"mypostid\":postId};option={\"method\":\"POST\",\"body\":\"action=nd_getchapters&mygrr=0&mypostid=\"+postId};res=java.ajax('https://www.novelupdates.com/wp-admin/admin-ajax.php,'+JSON.stringify(option));eles=org.jsoup.Jsoup.parse(res).select('li');reles=[];for(i=eles.length-1;i>=0;i--){reles.push(eles[i])};reles;</js>",
+"chapterName": "tag.a.1@text",
+"chapterUrl": "tag.a.1@href"
+},
+"searchUrl": "/?s={{key}}&post_type=seriesplans,{\"charset\":\"UTF-8\"}",
+"weight": 0
+}
+]
