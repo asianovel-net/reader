@@ -128,7 +128,7 @@
 "name":"$.title##<strong>|</strong>"
 },
 "ruleToc": {
-"chapterList": "class.ch-list@tag.amp-list@src<js>java.log(result[0]);urls=result;java.log(urls);items=[];for (var index in urls){items =items.concat(JSON.parse(java.ajax(urls[index])).items);};</js>",
+"chapterList": "//div[@class=\"ch-list\"]/amp-list/@src<js>urls=result;items=[];for (var index in urls){items =items.concat(JSON.parse(java.ajax(urls[index])).items);};</js>",
 "chapterName": "no",
 "chapterUrl": "permalink"
 },
