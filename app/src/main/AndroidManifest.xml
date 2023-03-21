@@ -397,7 +397,12 @@
         <service android:name=".service.HttpReadAloudService" />
         <service android:name=".service.AudioPlayService" />
         <service android:name=".service.DownloadService" />
-
+        <service android:name=".service.ReaderMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <receiver
             android:name=".receiver.MediaButtonReceiver"
             android:exported="true">
