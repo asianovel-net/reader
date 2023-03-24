@@ -1,6 +1,6 @@
 # Disclaimer
 
-* Reader.A is a tool for parsing specified rules and obtaining content, providing a convenient, fast and comfortable trial reading experience for web novel lovers.
+* AsianNovel is a tool for parsing specified rules and obtaining content, providing a convenient, fast and comfortable trial reading experience for web novel lovers.
 * When you search for a book, Reader will submit the title of the book to various third-party online literature websites in the form of keywords according to the rules you use.
   The content returned by each third-party website has nothing to do with Reader, and Reader is not responsible for it, nor does it assume any legal responsibility.
   Any third party web page linked to by using Reader is produced or provided by others. You may obtain other services from the third party web page. Reader is not responsible for its legality, nor assumes any legal responsibility.

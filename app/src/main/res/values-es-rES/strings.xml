@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--App-->
-    <string name="app_name">reader</string>
+    <string name="app_name">AsianNovel</string>
     <string name="receiving_shared_label">reader·buscador</string>
     <string name="tip_perm_request_storage">reader necesita de acceso de almacenamineto para buscar y leer libros. Por favor, diríjase a los "Ajustes de la aplicación" para conceder el "Permiso de almacenamineto".</string>
 
