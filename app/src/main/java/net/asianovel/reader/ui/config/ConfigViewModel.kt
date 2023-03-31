@@ -1,6 +1,7 @@
 package net.asianovel.reader.ui.config
 
 import android.app.Application
+import android.content.Context
 import net.asianovel.reader.R
 import net.asianovel.reader.base.BaseViewModel
 import net.asianovel.reader.help.AppWebDav
@@ -22,6 +23,14 @@ class ConfigViewModel(application: Application) : BaseViewModel(application) {
             FileUtils.delete(context.cacheDir.absolutePath)
         }.onSuccess {
             context.toastOnUi(R.string.clear_cache_success)
+        }
+    }
+
+    fun clearWebViewData() {
+        execute {
+            FileUtils.delete(context.getDir("webview", Context.MODE_PRIVATE))
+        }.onSuccess {
+            context.toastOnUi(R.string.success)
         }
     }
 

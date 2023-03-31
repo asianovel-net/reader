@@ -1068,4 +1068,10 @@
     <string name="update_book_fail">Update failed</string>
     <string name="notification_permission_rationale">Reading requires sending notifications to show reading control and download progress</string>
     <string name="webdav_after_local_restore_confirm">The webDav book source is newer than the local one, whether to restore it or not</string>
+    <string name="c_whitelist">Content Whitelist</string>
+    <string name="c_blacklist">Content Blacklist</string>
+    <string name="confirm">Confirm</string>
+    <string name="jump_to_another_app">Jump to another app</string>
+    <string name="clear_webview_data">Clear webview data</string>
+    <string name="clear_webview_data_summary">Clear webview all data</string>
 </resources>

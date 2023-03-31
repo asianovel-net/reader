@@ -45,7 +45,6 @@ android {
         versionName version
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         project.ext.set("archivesBaseName", name + "_" + version)
-        multiDexEnabled true
 
         buildConfigField "String", "Cronet_Version", "\"$CronetVersion\""
         buildConfigField "String", "Cronet_Main_Version", "\"$CronetMainVersion\""
@@ -133,7 +132,6 @@ dependencies {
     testImplementation('junit:junit:4.13.2')
     androidTestImplementation('androidx.test:runner:1.5.2')
     androidTestImplementation('androidx.test.espresso:espresso-core:3.5.1')
-    implementation('androidx.multidex:multidex:2.0.1')
     //kotlin
     //noinspection GradleDependency,DifferentStdlibGradleVersion
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version")
@@ -150,7 +148,7 @@ dependencies {
 
     //androidX
     implementation('androidx.core:core-ktx:1.9.0')
-    implementation('androidx.appcompat:appcompat:1.6.0')
+    implementation('androidx.appcompat:appcompat:1.6.1')
     implementation('androidx.activity:activity-ktx:1.6.1')
     implementation('androidx.fragment:fragment-ktx:1.5.5')
     implementation('androidx.preference:preference-ktx:1.2.0')
@@ -191,7 +189,7 @@ dependencies {
     //规则相关
     implementation('org.jsoup:jsoup:1.15.3')
     implementation('com.jayway.jsonpath:json-path:2.7.0')
-    implementation('cn.wanghaomiao:JsoupXpath:2.5.1')
+    implementation('cn.wanghaomiao:JsoupXpath:2.5.2')
     implementation(project(path: ':epublib'))
 
     //JS rhino
@@ -237,7 +235,7 @@ dependencies {
 
     //加解密类库,有些书源使用
     //noinspection GradleDependency,GradlePackageUpdate
-    implementation('cn.hutool:hutool-crypto:5.8.11')
+    implementation('cn.hutool:hutool-crypto:5.8.12')
 
     //firebase, 崩溃统计和性能统计, 会导致共存版本崩溃
     implementation platform('com.google.firebase:firebase-bom:31.2.3')

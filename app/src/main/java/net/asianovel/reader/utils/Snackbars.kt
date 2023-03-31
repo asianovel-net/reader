@@ -1,3 +1,6 @@
+@file:Suppress("unused")
+
+
 package net.asianovel.reader.utils
 
 import android.view.View

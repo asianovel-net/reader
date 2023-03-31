@@ -131,6 +131,7 @@ class OtherConfigFragment : PreferenceFragment(),
                         AppConfig.sourceEditMaxLine = it
                     }
             }
+            PreferKey.clearWebViewData -> clearWebViewData()
         }
         return super.onPreferenceTreeClick(preference)
     }
@@ -225,6 +226,16 @@ class OtherConfigFragment : PreferenceFragment(),
         ) {
             okButton {
                 viewModel.clearCache()
+            }
+            noButton()
+        }
+    }
+
+
+    private fun clearWebViewData() {
+        alert(R.string.clear_webview_data, R.string.sure_del) {
+            okButton {
+                viewModel.clearWebViewData()
             }
             noButton()
         }
