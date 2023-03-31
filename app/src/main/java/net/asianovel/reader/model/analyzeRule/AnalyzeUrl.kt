@@ -421,6 +421,12 @@ class AnalyzeUrl(
                         }
                         else -> get(urlNoQuery, fieldMap, true)
                     }
+                }.let{
+                    //  No search and Status not 2xx
+                    if(!it.raw.code.toString().startsWith("2") && key == null){
+                       return startBrowserAwait(it.url,it.raw.code.toString())
+                    }
+                    it
                 }.let {
                     val isXml = it.raw.body?.contentType()?.toString()
                         ?.matches(AppPattern.xmlContentTypeRegex) == true

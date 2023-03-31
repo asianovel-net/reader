@@ -25,7 +25,9 @@ import net.asianovel.reader.ui.association.OnLineImportActivity
 import net.asianovel.reader.ui.document.HandleFileContract
 import net.asianovel.reader.utils.*
 import net.asianovel.reader.utils.viewbindingdelegate.viewBinding
+import org.apache.commons.text.StringEscapeUtils
 import java.net.URLDecoder
+
 
 class WebViewActivity : VMBaseActivity<ActivityWebViewBinding, WebViewModel>() {
 
@@ -34,6 +36,7 @@ class WebViewActivity : VMBaseActivity<ActivityWebViewBinding, WebViewModel>() {
     private val imagePathKey = "imagePath"
     private var customWebViewCallback: WebChromeClient.CustomViewCallback? = null
     private var webPic: String? = null
+    private var html: String? = null
     private var isCloudflareChallenge = false
     private val saveImage = registerForActivityResult(HandleFileContract()) {
         it.uri?.let { uri ->
@@ -69,7 +72,7 @@ class WebViewActivity : VMBaseActivity<ActivityWebViewBinding, WebViewModel>() {
             R.id.menu_copy_url -> sendToClip(viewModel.baseUrl)
             R.id.menu_ok -> {
                 if (viewModel.sourceVerificationEnable) {
-                    viewModel.saveVerificationResult(intent) {
+                    viewModel.saveVerificationResult(html) {
                         finish()
                     }
                 } else {
@@ -231,11 +234,14 @@ class WebViewActivity : VMBaseActivity<ActivityWebViewBinding, WebViewModel>() {
                 } else {
                     binding.titleBar.title = intent.getStringExtra("title")
                 }
+                view.evaluateJavascript("(function() { return ('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>'); })();"){
+                    html = StringEscapeUtils.unescapeEcmaScript(it)
+                }
                 view.evaluateJavascript("!!window._cf_chl_opt") {
                     if (it == "true") {
                         isCloudflareChallenge = true
                     } else if (isCloudflareChallenge && viewModel.sourceVerificationEnable) {
-                        viewModel.saveVerificationResult(intent) {
+                        viewModel.saveVerificationResult(html) {
                             finish()
                         }
                     }

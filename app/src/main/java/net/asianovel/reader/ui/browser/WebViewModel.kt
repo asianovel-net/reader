@@ -84,17 +84,10 @@ class WebViewModel(application: Application) : BaseViewModel(application) {
         }
     }
 
-    fun saveVerificationResult(intent: Intent, success: () -> Unit) {
+    fun saveVerificationResult(html: String?, success: () -> Unit) {
         execute {
             if (sourceVerificationEnable) {
-                val url = intent.getStringExtra("url")!!
-                val source = appDb.bookSourceDao.getBookSource(sourceOrigin)
                 val key = "${sourceOrigin}_verificationResult"
-                html = AnalyzeUrl(
-                    url,
-                    headerMapF = headerMap,
-                    source = source
-                ).getStrResponseAwait(useWebView = false).body
                 CacheManager.putMemory(key, html ?: "")
             }
         }.onSuccess {
