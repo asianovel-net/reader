@@ -2,13 +2,6 @@
 
 * This help can be opened again in "**My**" - top right corner help button, be sure to make a backup before updating to avoid data loss! *
 
-
-## Book source
-
-### 1. How to import book source ?
-* Click "**Me**" - "**Source Management**";
-* Click on the upper right corner and select "**import local/import online or others**";
-
 ## UI
 
 ### 1. How to refresh the bookshelf?

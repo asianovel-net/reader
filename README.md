@@ -14,6 +14,11 @@ reader.A is based on [legado](https://github.com/gedoor/legado) changed to fit f
 >New user?
 >The software does not provide content, you need to add it manually, such as importing book sources, etc. 
 
+# Disclaimer
+* AsianNovel app is a tool for parsing specified rules and obtaining content, providing a convenient, fast and comfortable trial reading experience for web novel lovers.
+* When you search for a book, AsianNovel app will submit the title of the book to various third-party online literature websites in the form of keywords according to the rules you use.
+* AsianNovel app is committed to minimizing the meaningless time wasted by web novel readers in the process of searching, and displays the latest chapters of web novel in different websites through professional searches.
+
 # Function [![](https://img.shields.io/badge/-Function-F5F5F5.svg)](#Function-)
 
 You can customize the book source, set your own rules, and capture web page data. The rules are simple and easy to understand. There are rules in the software. List bookshelf, grid bookshelf switch freely. The book source rules support search and discovery, and all the functions of finding books and reading books are all customized, making it easier to find books.
@@ -38,4 +43,12 @@ You can customize the book source, set your own rules, and capture web page data
 * Support local TXT, EPUB reading, manual browsing, intelligent scanning.
 * Support highly customized reading interface, switch font, color, background, line spacing, paragraph spacing, bold, simplified and traditional conversion.
 * Support multiple page turning modes, covering, emulating, sliding, scrolling, etc.
+
+
+# Screenshot
+<img src="https://www.asianovel.net/forum/assets/files/2023-03-04/1677919847-950082-1.jpg" width=300 height=600 />
+<img src="https://www.asianovel.net/forum/assets/files/2023-03-26/1679816039-380037-screenshot-20230326-153017-netasianovelplayrelease.jpg" width=300 height=600 />
+<img src="https://www.asianovel.net/forum/assets/files/2023-03-04/1677919860-203868-3.jpg" width=300 height=600 />
+<img src="https://www.asianovel.net/forum/assets/files/2023-03-04/1677919866-472120-4.jpg" width=300 height=600 />
+<img src="https://www.asianovel.net/forum/assets/files/2023-03-04/1677919871-908572-5.jpg" width=300 height=600 />
 
