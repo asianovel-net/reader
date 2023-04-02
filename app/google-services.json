@@ -7,35 +7,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:402272241761:android:3a62429b4aa8045ba74220",
-        "android_client_info": {
-          "package_name": "net.asianovel.reader.debug"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "402272241761-d9jc9bfgtqp1mhctmi24sngla8qid0qb.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCmuWGN4GQqnWvy1AnZXIdv4yMJUCM-scA"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "402272241761-d9jc9bfgtqp1mhctmi24sngla8qid0qb.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:402272241761:android:a83f31685f69c653a74220",
         "android_client_info": {
           "package_name": "net.asianovel.reader.release"
