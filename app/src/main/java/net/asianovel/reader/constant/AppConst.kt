@@ -20,6 +20,7 @@ object AppConst {
     const val channelIdDownload = "channel_download"
     const val channelIdReadAloud = "channel_read_aloud"
     const val channelIdWeb = "channel_web"
+    const val channelIdPlatform = "channel_platform"
 
     const val UA_NAME = "User-Agent"
 

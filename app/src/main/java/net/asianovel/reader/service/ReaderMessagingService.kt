@@ -8,6 +8,7 @@ import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import net.asianovel.reader.R
+import net.asianovel.reader.constant.AppConst
 
 
 class ReaderMessagingService : FirebaseMessagingService() {
@@ -20,7 +21,7 @@ class ReaderMessagingService : FirebaseMessagingService() {
     }
 
     fun getFirebaseMessage(title: String?, msg: String?) {
-        val builder = NotificationCompat.Builder(this, "myFirebaseChannel")
+        val builder = NotificationCompat.Builder(this, AppConst.channelIdPlatform)
             .setSmallIcon(R.drawable.ic_launcher1)
             .setContentTitle(title)
             .setContentText(msg)

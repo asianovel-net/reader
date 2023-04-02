@@ -29,6 +29,7 @@ import net.asianovel.reader.model.BookCover
 import net.asianovel.reader.utils.defaultSharedPreferences
 import net.asianovel.reader.utils.getPrefBoolean
 import kotlinx.coroutines.launch
+import net.asianovel.reader.constant.AppConst.channelIdPlatform
 import splitties.init.appCtx
 import splitties.systemservices.notificationManager
 import java.util.concurrent.TimeUnit
@@ -147,12 +148,23 @@ class App : Application() {
             setSound(null, null)
         }
 
+        val platformChannel = NotificationChannel(
+            channelIdPlatform,
+            "Platform",
+            NotificationManager.IMPORTANCE_DEFAULT
+        ).apply {
+            enableLights(false)
+            enableVibration(false)
+            setSound(null, null)
+        }
+
         //向notification manager 提交channel
         notificationManager.createNotificationChannels(
             listOf(
                 downloadChannel,
                 readAloudChannel,
-                webChannel
+                webChannel,
+                platformChannel
             )
         )
     }
