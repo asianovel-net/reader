@@ -118,4 +118,9 @@
         android:title="@string/help"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/menu_bypass_cloudflare"
+        android:title="Bypass Cloudflare"
+        app:showAsAction="never" />
+
 </menu>

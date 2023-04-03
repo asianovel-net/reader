@@ -100,6 +100,7 @@ object WebBook {
             baseUrl = bookSource.bookSourceUrl,
             source = bookSource,
             ruleData = ruleData,
+            bypassCloudflare = true,
             headerMapF = bookSource.getHeaderMap(true)
         )
         var res = analyzeUrl.getStrResponseAwait()

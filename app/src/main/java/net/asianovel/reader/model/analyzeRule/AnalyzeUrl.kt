@@ -45,6 +45,7 @@ class AnalyzeUrl(
     val speakText: String? = null,
     val speakSpeed: Int? = null,
     var baseUrl: String = "",
+    var bypassCloudflare: Boolean=false,
     private val source: BaseSource? = null,
     private val ruleData: RuleDataInterface? = null,
     private val chapter: BookChapter? = null,
@@ -422,8 +423,8 @@ class AnalyzeUrl(
                         else -> get(urlNoQuery, fieldMap, true)
                     }
                 }.let{
-                    //  No search and Status not 2xx
-                    if(!it.raw.code.toString().startsWith("2") && key == null){
+                    //   Status not 2xx and bypassCloudflare
+                    if(!it.raw.code.toString().startsWith("2") && bypassCloudflare){
                        return startBrowserAwait(it.url,it.raw.code.toString())
                     }
                     it

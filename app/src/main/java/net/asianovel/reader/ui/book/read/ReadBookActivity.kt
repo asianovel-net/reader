@@ -71,6 +71,7 @@ import net.asianovel.reader.ui.widget.dialog.TextDialog
 import net.asianovel.reader.utils.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
+import net.asianovel.reader.help.source.SourceVerificationHelp
 
 /**
  * 阅读界面
@@ -411,6 +412,10 @@ class ReadBookActivity : BaseReadBookActivity(),
             }
             R.id.menu_same_title_removed -> viewModel.reverseRemoveSameTitle()
             R.id.menu_help -> showReadMenuHelp()
+            R.id.menu_bypass_cloudflare -> {
+                ReadBook.curTextChapter?.let {
+                    SourceVerificationHelp.startBrowser(ReadBook.bookSource, it.chapter.getAbsoluteURL(), it.chapter.title) }
+            }
         }
         return super.onCompatOptionsItemSelected(item)
     }
