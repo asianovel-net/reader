@@ -20,6 +20,7 @@ import net.asianovel.reader.utils.longToastOnUi
 import net.asianovel.reader.utils.visible
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Main
+import net.asianovel.reader.model.translation.Translation
 import java.util.concurrent.ConcurrentHashMap
 
 class ChapterListAdapter(context: Context, val callback: Callback) :

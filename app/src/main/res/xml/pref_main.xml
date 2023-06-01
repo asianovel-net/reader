@@ -59,6 +59,13 @@
             app:iconSpaceReserved="false" />
 
         <net.asianovel.reader.lib.prefs.Preference
+            android:key="translate_setting"
+            android:summary="@string/translate_setting_s"
+            android:title="@string/translate_setting"
+            android:icon="@drawable/ic_cfg_theme"
+            app:iconSpaceReserved="false" />
+
+        <net.asianovel.reader.lib.prefs.Preference
             android:key="setting"
             android:summary="@string/other_setting_s"
             android:title="@string/other_setting"

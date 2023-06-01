@@ -40,6 +40,11 @@ data class Book(
     //书源名称 or 本地书籍文件名
     @ColumnInfo(defaultValue = "")
     var originName: String = "",
+
+    // 关联名称
+    @ColumnInfo(defaultValue = "")
+    var associatedNames: String = "",
+
     // 书籍名称(书源获取)
     @ColumnInfo(defaultValue = "")
     override var name: String = "",

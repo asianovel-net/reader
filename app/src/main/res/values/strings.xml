@@ -66,6 +66,8 @@
     <string name="theme_setting_s">Some settings related to interface or color</string>
     <string name="other_setting">Other settings</string>
     <string name="other_setting_s">Some function-related settings</string>
+    <string name="translate_setting">Translate settings</string>
+    <string name="translate_setting_s">Some translate settings</string>
     <string name="about">About</string>
     <string name="donate">Donations</string>
     <string name="exit">Exit</string>
@@ -1074,4 +1076,7 @@
     <string name="jump_to_another_app">Jump to another app</string>
     <string name="clear_webview_data">Clear webview data</string>
     <string name="clear_webview_data_summary">Clear webview all data</string>
+    <string name="translate_mode">Translate mode</string>
+    <string name="pre_translate">Translate in advance</string>
+    <string name="pre_translate_s">Translate %s chapters in advance</string>
 </resources>

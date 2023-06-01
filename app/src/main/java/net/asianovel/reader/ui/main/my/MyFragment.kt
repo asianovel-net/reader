@@ -141,6 +141,9 @@ class MyFragment : BaseFragment(R.layout.fragment_my_config) {
                 "theme_setting" -> startActivity<ConfigActivity> {
                     putExtra("configTag", ConfigTag.THEME_CONFIG)
                 }
+                "translate_setting" -> startActivity<ConfigActivity> {
+                    putExtra("configTag", ConfigTag.TRANSLATE_CONFIG)
+                }
                 "readRecord" -> startActivity<ReadRecordActivity>()
                 "about" -> startActivity<AboutActivity>()
             }

@@ -117,4 +117,10 @@
 		<item>SubstituirRegra</item>
 	</string-array>
 
+	<string-array name="translate_mode">
+		<item>Off</item>
+		<item>Google Web</item>
+		<!--item>chatGpt</item-->
+	</string-array>
+
 </resources>

@@ -14,6 +14,7 @@ import net.asianovel.reader.databinding.ActivityBookInfoEditBinding
 import net.asianovel.reader.help.book.isAudio
 import net.asianovel.reader.help.book.isImage
 import net.asianovel.reader.help.book.isLocal
+import net.asianovel.reader.model.translation.Translation
 import net.asianovel.reader.ui.book.changecover.ChangeCoverDialog
 import net.asianovel.reader.utils.*
 import net.asianovel.reader.utils.viewbindingdelegate.viewBinding
@@ -73,18 +74,20 @@ class BookInfoEditActivity :
     }
 
     private fun upView(book: Book) = binding.run {
-        tieBookName.setText(book.name)
-        tieBookAuthor.setText(book.author)
-        spType.setSelection(
-            when {
-                book.isImage -> 2
-                book.isAudio -> 1
-                else -> 0
-            }
-        )
-        tieCoverUrl.setText(book.getDisplayCover())
-        tieBookIntro.setText(book.getDisplayIntro())
-        upCover()
+        Translation.getTranslateBook(book).let {translateBook ->
+            tieBookName.setText(translateBook.name)
+            tieBookAuthor.setText(book.author)
+            spType.setSelection(
+                when {
+                    book.isImage -> 2
+                    book.isAudio -> 1
+                    else -> 0
+                }
+            )
+            tieCoverUrl.setText(book.getDisplayCover())
+            tieBookIntro.setText(translateBook.getDisplayIntro())
+            upCover()
+        }
     }
 
     private fun upCover() {

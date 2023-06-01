@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Looper
 import android.util.AndroidRuntimeException
+import android.util.Log
 import android.webkit.CookieManager
 import android.webkit.WebSettings
 import android.webkit.WebView
@@ -111,6 +112,10 @@ class BackstageWebView(
         mWebView = null
     }
 
+    private fun checkWebView():Boolean {
+        return mWebView != null
+    }
+
     private fun getJs(): String {
         javaScript?.let {
             if (it.isNotEmpty()) {
@@ -145,6 +150,9 @@ class BackstageWebView(
         var retry = 0
         private val mWebView: WeakReference<WebView> = WeakReference(webView)
         override fun run() {
+            if (!checkWebView()) {
+                return
+            }
             mWebView.get()?.evaluateJavascript(mJavaScript) {
                 if (it.isNotEmpty() && it != "null") {
                     val content = StringEscapeUtils.unescapeJson(it)

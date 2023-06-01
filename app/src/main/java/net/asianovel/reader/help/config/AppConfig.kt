@@ -3,7 +3,9 @@ package net.asianovel.reader.help.config
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
+import android.webkit.WebSettings
 import net.asianovel.reader.BuildConfig
+import net.asianovel.reader.base.AppContextWrapper
 import net.asianovel.reader.constant.AppConst
 import net.asianovel.reader.constant.PreferKey
 import net.asianovel.reader.data.appDb
@@ -15,6 +17,7 @@ object AppConfig : SharedPreferences.OnSharedPreferenceChangeListener {
     val isCronet = appCtx.getPrefBoolean(PreferKey.cronet)
     val useAntiAlias = appCtx.getPrefBoolean(PreferKey.antiAlias)
     var userAgent: String = getPrefUserAgent()
+
     var isEInkMode = appCtx.getPrefString(PreferKey.themeMode) == "3"
     var clickActionTL = appCtx.getPrefInt(PreferKey.clickActionTL, 2)
     var clickActionTC = appCtx.getPrefInt(PreferKey.clickActionTC, 2)
@@ -338,6 +341,12 @@ object AppConfig : SharedPreferences.OnSharedPreferenceChangeListener {
             appCtx.putPrefInt(PreferKey.preDownloadNum, value)
         }
 
+    var preTranslateNum
+        get() = appCtx.getPrefInt(PreferKey.preTranslateNum, 0)
+        set(value) {
+            appCtx.putPrefInt(PreferKey.preTranslateNum, value)
+        }
+
     val syncBookProgress get() = appCtx.getPrefBoolean(PreferKey.syncBookProgress, true)
 
     val mediaButtonOnExit get() = appCtx.getPrefBoolean("mediaButtonOnExit", true)
@@ -388,6 +397,22 @@ object AppConfig : SharedPreferences.OnSharedPreferenceChangeListener {
             appCtx.putPrefInt(PreferKey.bookshelfSort, value)
         }
 
+    var googleWebTranslateUrl: String
+        get() = appCtx.getPrefString(PreferKey.googleWebTranslateUrl) ?: "https://translate.google.com"
+        set(value) {
+            appCtx.putPrefString(PreferKey.googleWebTranslateUrl,value)
+        }
+    var chatGptRolePrompt: String
+        get() = appCtx.getPrefString(PreferKey.chatGptRolePrompt) ?: "You are a professional translation engine, please translate the text into a colloquial, professional, elegant and fluent content, without the style of machine translation. You must only translate the text content, never interpret it."
+        set(value) {
+            appCtx.putPrefString(PreferKey.chatGptRolePrompt,value)
+        }
+    var chatGptToken: String
+        get() = appCtx.getPrefString(PreferKey.chatGptToken) ?: ""
+        set(value) {
+            appCtx.putPrefString(PreferKey.chatGptToken,value)
+        }
+
     fun getBookSortByGroupId(groupId: Long): Int {
         return appDb.bookGroupDao.getByID(groupId)?.getRealBookSort()
             ?: bookshelfSort
@@ -396,10 +421,24 @@ object AppConfig : SharedPreferences.OnSharedPreferenceChangeListener {
     private fun getPrefUserAgent(): String {
         val ua = appCtx.getPrefString(PreferKey.userAgent)
         if (ua.isNullOrBlank()) {
-            return "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/" + BuildConfig.Cronet_Main_Version + " Safari/537.36"
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                appCtx.putPrefString(PreferKey.userAgent, WebSettings.getDefaultUserAgent(appCtx))
+                return appCtx.getPrefString(PreferKey.userAgent)!!
+            }
+            return "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.57 Mobile Safari/537.36"
         }
         return ua
     }
+
+    private fun getPrefGoogleWebTranslateUrl(): String {
+        val googleWebTranslateUrl = appCtx.getPrefString(PreferKey.googleWebTranslateUrl)
+        if (googleWebTranslateUrl.isNullOrBlank()) {
+            return "https://translate.google.com"
+        }
+        return googleWebTranslateUrl
+    }
+
+
 
     var bitmapCacheSize: Int
         get() = appCtx.getPrefInt(PreferKey.bitmapCacheSize, 50)
@@ -434,6 +473,12 @@ object AppConfig : SharedPreferences.OnSharedPreferenceChangeListener {
         get() = appCtx.getPrefBoolean(PreferKey.audioPlayWakeLock)
         set(value) {
             appCtx.putPrefBoolean(PreferKey.audioPlayWakeLock, value)
+        }
+
+    var translateMode: String
+        get() = appCtx.getPrefString(PreferKey.translateMode) ?: "off"
+        set(value) {
+            appCtx.putPrefString(PreferKey.translateMode, value)
         }
 
     fun detectClickArea() {

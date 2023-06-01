@@ -22,6 +22,8 @@ import net.asianovel.reader.ui.login.SourceLoginActivity
 import net.asianovel.reader.ui.widget.dialog.TextDialog
 import net.asianovel.reader.utils.*
 import kotlinx.coroutines.CoroutineScope
+import net.asianovel.reader.help.DefaultData
+import net.asianovel.reader.model.translation.Translation
 import splitties.views.onLongClick
 
 class ExploreAdapter(context: Context, val callBack: CallBack) :
@@ -60,7 +62,7 @@ class ExploreAdapter(context: Context, val callBack: CallBack) :
                 Coroutine.async(callBack.scope) {
                     item.exploreKinds()
                 }.onSuccess { kindList ->
-                    upKindList(flexbox, item.bookSourceUrl, kindList)
+                    upKindList(flexbox, item, kindList)
                 }.onFinally {
                     rotateLoading.hide()
                     if (scrollTo >= 0) {
@@ -77,14 +79,18 @@ class ExploreAdapter(context: Context, val callBack: CallBack) :
         }
     }
 
-    private fun upKindList(flexbox: FlexboxLayout, sourceUrl: String, kinds: List<ExploreKind>) {
+    private fun upKindList(flexbox: FlexboxLayout, bookSource: BookSource, kinds: List<ExploreKind>) {
         if (kinds.isNotEmpty()) kotlin.runCatching {
             recyclerFlexbox(flexbox)
             flexbox.visible()
             kinds.forEach { kind ->
                 val tv = getFlexboxChild(flexbox)
                 flexbox.addView(tv)
-                tv.text = kind.title
+                var title = kind.title
+                if (Translation.enableTranslate(bookSource.bookSourceUrl)) {
+                    title = DefaultData.zhEnTerms.get(kind.title) ?: kind.title
+                }
+                tv.text = title
                 val lp = tv.layoutParams as FlexboxLayout.LayoutParams
                 kind.style().let { style ->
                     lp.flexGrow = style.layout_flexGrow
@@ -100,7 +106,7 @@ class ExploreAdapter(context: Context, val callBack: CallBack) :
                         if (kind.title.startsWith("ERROR:")) {
                             it.activity?.showDialogFragment(TextDialog("ERROR", kind.url))
                         } else {
-                            callBack.openExplore(sourceUrl, kind.title, kind.url)
+                            callBack.openExplore(bookSource.bookSourceUrl, kind.title, kind.url)
                         }
                     }
                 }

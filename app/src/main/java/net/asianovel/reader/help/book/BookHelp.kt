@@ -3,6 +3,8 @@ package net.asianovel.reader.help.book
 import android.graphics.BitmapFactory
 import android.os.ParcelFileDescriptor
 import androidx.documentfile.provider.DocumentFile
+import com.github.pemistahl.lingua.api.*
+import com.github.pemistahl.lingua.api.Language.*
 import net.asianovel.reader.constant.AppLog
 import net.asianovel.reader.constant.AppPattern
 import net.asianovel.reader.constant.EventBus
@@ -15,6 +17,10 @@ import net.asianovel.reader.model.localBook.LocalBook
 import net.asianovel.reader.utils.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
+import net.asianovel.reader.base.AppContextWrapper
+import net.asianovel.reader.help.CacheManager
+import net.asianovel.reader.help.config.AppConfig
+import net.asianovel.reader.model.translation.Translation
 import org.apache.commons.text.similarity.JaccardSimilarity
 import splitties.init.appCtx
 import java.io.ByteArrayInputStream
@@ -28,6 +34,7 @@ import java.util.zip.ZipFile
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
+
 
 @Suppress("unused")
 object BookHelp {
@@ -43,11 +50,13 @@ object BookHelp {
         FileUtils.delete(
             FileUtils.getPath(downloadDir, cacheFolderName)
         )
+        CacheManager.deleteTranslate()
     }
 
     fun clearCache(book: Book) {
         val filePath = FileUtils.getPath(downloadDir, cacheFolderName, book.getFolderName())
         FileUtils.delete(filePath)
+        CacheManager.deleteTranslate(book)
     }
 
     fun updateCacheFolder(oldBook: Book, newBook: Book) {
@@ -104,14 +113,23 @@ object BookHelp {
         content: String
     ) {
         if (content.isEmpty()) return
+        var fileName = bookChapter.getFileName()
+        appDb.bookSourceDao.getBookSource(book.origin)?.let {
+            val fromLanguage = detectLang(content)
+            if (fromLanguage.equals(it.bookSourceLang,true)){
+                fileName = bookChapter.getOrignalFileName()
+            }
+        }
+
         //保存文本
         FileUtils.createFileIfNotExist(
             downloadDir,
             cacheFolderName,
             book.getFolderName(),
-            bookChapter.getFileName(),
+            fileName,
         ).writeText(content)
     }
+
 
     suspend fun saveImages(
         bookSource: BookSource,
@@ -320,6 +338,7 @@ object BookHelp {
         return null
     }
 
+
     /**
      * 删除章节内容
      */
@@ -491,5 +510,19 @@ object BookHelp {
             .replace(regexC, "")
             .replace(regexOther, "")
     }
+
+     fun detectLang(text:String): String {
+        val detector: LanguageDetector = LanguageDetectorBuilder.fromLanguages(ENGLISH, CHINESE).build()
+        text.lines().forEach {
+            if (it.trim().isNotEmpty()) {
+                val detectedLanguage = detector.detectLanguageOf(text)
+                if (detectedLanguage.name != UNKNOWN.name) {
+                    return detectedLanguage.isoCode639_1.name
+                }
+            }
+        }
+        return CHINESE.isoCode639_1.name
+    }
+
 
 }

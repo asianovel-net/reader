@@ -86,6 +86,7 @@ object PreferKey {
     const val antiAlias = "antiAlias"
     const val bitmapCacheSize = "bitmapCacheSize"
     const val preDownloadNum = "preDownloadNum"
+    const val preTranslateNum = "preTranslateNum"
     const val autoRefresh = "auto_refresh"
     const val defaultToRead = "defaultToRead"
     const val exportCharset = "exportCharset"
@@ -141,5 +142,8 @@ object PreferKey {
     const val showReadTitleAddition = "showReadTitleAddition"
     const val readBarStyleFollowPage = "readBarStyleFollowPage"
     const val contentSelectSpeakMod = "contentReadAloudMod"
-
+    const val translateMode = "translateMode"
+    const val googleWebTranslateUrl = "googleWebTranslateUrl"
+    const val chatGptRolePrompt = "chatGptRolePrompt"
+    const val chatGptToken = "chatGptToken"
 }

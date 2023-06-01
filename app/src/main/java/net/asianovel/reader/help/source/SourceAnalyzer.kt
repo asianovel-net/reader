@@ -78,6 +78,7 @@ object SourceAnalyzer {
                     bookSourceUrl = jsonItem.readString("bookSourceUrl")
                         ?: throw NoStackTraceException("格式不对")
                     bookSourceName = jsonItem.readString("bookSourceName") ?: ""
+                    bookSourceLang = jsonItem.readString("bookSourceLang") ?: ""
                     bookSourceGroup = jsonItem.readString("bookSourceGroup")
                     loginUrl = jsonItem.readString("loginUrl")
                     loginUi = jsonItem.readString("loginUi")
@@ -144,6 +145,7 @@ object SourceAnalyzer {
             } else {
                 source.bookSourceUrl = sourceAny.bookSourceUrl
                 source.bookSourceName = sourceAny.bookSourceName
+                source.bookSourceLang = sourceAny.bookSourceLang
                 source.bookSourceGroup = sourceAny.bookSourceGroup
                 source.bookSourceType = sourceAny.bookSourceType
                 source.bookUrlPattern = sourceAny.bookUrlPattern
@@ -223,6 +225,7 @@ object SourceAnalyzer {
     @Keep
     data class BookSourceAny(
         var bookSourceName: String = "",                // 名称
+        var bookSourceLang: String = "",                // 语言
         var bookSourceGroup: String? = null,            // 分组
         var bookSourceUrl: String = "",                 // 地址，包括 http/https
         var bookSourceType: Int = BookSourceType.default,     // 类型，0 文本，1 音频

@@ -24,6 +24,15 @@ object DefaultData {
         }
     }
 
+    val zhEnTerms: Map<String,String> by lazy {
+        val json = String(
+            appCtx.assets.open("defaultData${File.separator}zhEnTerms.json")
+                .readBytes()
+        )
+        GSON.fromJsonObject<Map<String,String>>(json).getOrNull()
+            ?: emptyMap<String,String>()
+    }
+
     val readConfigs: List<ReadBookConfig.Config> by lazy {
         val json = String(
             appCtx.assets.open("defaultData${File.separator}${ReadBookConfig.configFileName}")
