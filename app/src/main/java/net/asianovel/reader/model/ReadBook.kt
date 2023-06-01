@@ -20,6 +20,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
+import net.asianovel.reader.help.CacheManager
+import net.asianovel.reader.model.translation.Translation
 import splitties.init.appCtx
 import kotlin.math.min
 
@@ -399,7 +401,9 @@ object ReadBook : CoroutineScope by MainScope() {
                 val displayTitle = chapter.getDisplayTitle(
                     contentProcessor.getTitleReplaceRules(),
                     book.getUseReplaceRule()
-                )
+                ).let {
+                    chapter.getTranslateTitle()
+                }
                 val contents = contentProcessor
                     .getContent(book, chapter, content, includeTitle = false)
                 val textChapter = ChapterProvider
@@ -484,19 +488,27 @@ object ReadBook : CoroutineScope by MainScope() {
             return
         }
         Coroutine.async {
+            var preNum = AppConfig.preDownloadNum
+            bookSource?.let {
+                if (Translation.enableTranslate(it.bookSourceLang)){
+                    preNum = min(AppConfig.preDownloadNum,AppConfig.preTranslateNum)
+                }
+            }
+
             //预下载
-            val maxChapterIndex = durChapterIndex + AppConfig.preDownloadNum
+            val maxChapterIndex = durChapterIndex + preNum
             for (i in durChapterIndex.plus(2)..maxChapterIndex) {
                 delay(1000)
                 download(i)
             }
-            val minChapterIndex = durChapterIndex - min(5, AppConfig.preDownloadNum)
+            val minChapterIndex = durChapterIndex - min(5, preNum)
             for (i in durChapterIndex.minus(2) downTo minChapterIndex) {
                 delay(1000)
                 download(i)
             }
         }
     }
+
 
     interface CallBack {
         fun upMenuView()

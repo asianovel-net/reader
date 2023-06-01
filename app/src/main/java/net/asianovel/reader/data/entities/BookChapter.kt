@@ -19,6 +19,10 @@ import net.asianovel.reader.utils.*
 import kotlinx.coroutines.CancellationException
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
+import net.asianovel.reader.base.AppContextWrapper
+import net.asianovel.reader.help.CacheManager
+import net.asianovel.reader.help.book.BookHelp
+import net.asianovel.reader.model.translation.Translation
 import splitties.init.appCtx
 
 @Parcelize
@@ -130,6 +134,19 @@ data class BookChapter(
         }
     }
 
+     fun getTranslateTitle(): String {
+        val toLanguage   = Translation.getToLanguage()
+        val fromLanguage = BookHelp.detectLang(title)
+        if (AppConfig.translateMode != "off" && !toLanguage.equals(fromLanguage,true)) {
+            var translateChapterTitle = "Chapter ${index}"
+            CacheManager.get(Translation.getTranslationKey(bookUrl, title))?.let {
+                translateChapterTitle = it
+            }
+            return translateChapterTitle
+        }
+        return title
+    }
+
     fun getAbsoluteURL(): String {
         //二级目录解析的卷链接为空 返回目录页的链接
         if (url.startsWith(title) && isVolume) return baseUrl
@@ -145,6 +162,10 @@ data class BookChapter(
 
     @Suppress("unused")
     fun getFileName(suffix: String = "nb"): String =
+        String.format("%05d-%s.%s", index, MD5Utils.md5Encode16(getTranslateTitle()), suffix)
+
+    @Suppress("unused")
+    fun getOrignalFileName(suffix: String = "nb"): String =
         String.format("%05d-%s.%s", index, MD5Utils.md5Encode16(title), suffix)
 
     @Suppress("unused")

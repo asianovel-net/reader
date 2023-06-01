@@ -63,6 +63,8 @@
     <string name="theme_setting_s">同主題/顏色相關的一些設定</string>
     <string name="other_setting">其它設定</string>
     <string name="other_setting_s">與功能相關的一些設定</string>
+    <string name="translate_setting">Translate settings</string>
+    <string name="translate_setting_s">Some translate settings</string>
     <string name="about">關於</string>
     <string name="donate">捐贈</string>
     <string name="exit">退出</string>
@@ -1071,4 +1073,7 @@
     <string name="jump_to_another_app">跳转其它应用</string>
     <string name="clear_webview_data">清除 WebView 数据</string>
     <string name="clear_webview_data_summary">清除内置浏览器所有数据</string>
+    <string name="translate_mode">Translate mode</string>
+    <string name="pre_translate">Translate in advance</string>
+    <string name="pre_translate_s">Translate %s chapters in advance</string>
 </resources>

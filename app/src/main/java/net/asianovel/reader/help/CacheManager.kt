@@ -2,9 +2,12 @@ package net.asianovel.reader.help
 
 import androidx.collection.LruCache
 import net.asianovel.reader.data.appDb
+import net.asianovel.reader.data.entities.Book
 import net.asianovel.reader.data.entities.Cache
 import net.asianovel.reader.model.analyzeRule.QueryTTF
+import net.asianovel.reader.model.translation.Translation
 import net.asianovel.reader.utils.ACache
+import net.asianovel.reader.utils.MD5Utils
 import net.asianovel.reader.utils.memorySize
 
 @Suppress("unused")
@@ -108,5 +111,23 @@ object CacheManager {
         appDb.cacheDao.delete(key)
         deleteMemory(key)
         ACache.get().remove(key)
+    }
+
+    fun deleteTranslate() {
+      val keys = memoryLruCache.snapshot().keys
+        keys.forEach {
+            if (it.indexOf(Translation.translatePrefix) != -1) {
+                delete(it)
+            }
+        }
+    }
+
+    fun deleteTranslate(book: Book) {
+        val keys = memoryLruCache.snapshot().keys
+        keys.forEach {
+            if (it.indexOf(Translation.translatePrefix+ MD5Utils.md5Encode16("${book.bookUrl}")) != -1) {
+                delete(it)
+            }
+        }
     }
 }

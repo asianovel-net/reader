@@ -33,6 +33,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.conflate
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import net.asianovel.reader.model.translation.Translation
 import splitties.init.appCtx
 
 class SearchActivity : VMBaseActivity<ActivityBookSearchBinding, SearchViewModel>(),
@@ -275,9 +276,12 @@ class SearchActivity : VMBaseActivity<ActivityBookSearchBinding, SearchViewModel
                 searchFinally()
             }
         }
-        viewModel.searchBookLiveData.observe(this) {
-            adapter.setItems(it)
+        viewModel.searchBookLiveData.observe(this) { it ->
+            Translation.getTranslateSearchBook(it).let {
+                adapter.setItems(it)
+            }
         }
+
         launch {
             appDb.bookSourceDao.flowEnabledGroups().collect {
                 groups = it

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <net.asianovel.reader.lib.prefs.NameListPreference
+        android:defaultValue="off"
+        android:key="translateMode"
+        android:title="@string/translate_mode"
+        app:entries="@array/translate_mode"
+        app:entryValues="@array/translate_mode_value" />
+
+    <net.asianovel.reader.lib.prefs.Preference
+        android:key="preTranslateNum"
+        android:summary="@string/pre_translate_s"
+        android:title="@string/pre_translate" />
+
+    <net.asianovel.reader.lib.prefs.PreferenceCategory
+        android:title="Google web translate"
+        app:allowDividerBelow="false"
+        app:iconSpaceReserved="false"
+        app:layout="@layout/view_preference_category">
+
+        <net.asianovel.reader.lib.prefs.Preference
+            android:key="googleWebTranslateUrl"
+            android:title="Google web translate url" />
+    </net.asianovel.reader.lib.prefs.PreferenceCategory>
+
+    <!--net.asianovel.reader.lib.prefs.PreferenceCategory
+        android:title="ChatGpt translate"
+        app:allowDividerBelow="false"
+        app:iconSpaceReserved="false"
+        app:layout="@layout/view_preference_category">
+        <net.asianovel.reader.lib.prefs.Preference
+            android:key="chatGptRolePrompt"
+            android:title="ChatGpt Role prompt" />
+        <net.asianovel.reader.lib.prefs.Preference
+            android:key="chatGptToken"
+            android:title="ChatGpt token" />
+    </net.asianovel.reader.lib.prefs.PreferenceCategory -->
+
+
+</androidx.preference.PreferenceScreen>

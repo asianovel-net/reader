@@ -48,6 +48,7 @@ import net.asianovel.reader.utils.viewbindingdelegate.viewBinding
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import net.asianovel.reader.model.translation.Translation
 
 
 class BookInfoActivity :
@@ -227,21 +228,24 @@ class BookInfoActivity :
     }
 
     private fun showBook(book: Book) = binding.run {
-        showCover(book)
-        tvName.text = book.name
-        tvAuthor.text = getString(R.string.author_show, book.getRealAuthor())
-        tvOrigin.text = getString(R.string.origin_show, book.originName)
-        tvLasted.text = getString(R.string.lasted_show, book.latestChapterTitle)
-        tvIntro.text = book.getDisplayIntro()
-        upTvBookshelf()
-        val kinds = book.getKindList()
-        if (kinds.isEmpty()) {
-            lbKind.gone()
-        } else {
-            lbKind.visible()
-            lbKind.setLabels(kinds)
+        Translation.getTranslateBook(book).let {translateBook ->
+            showCover(book)
+            tvName.text = translateBook.name
+            tvAuthor.text = getString(R.string.author_show, book.getRealAuthor())
+            tvOrigin.text = getString(R.string.origin_show, book.originName)
+            tvLasted.text = getString(R.string.lasted_show, translateBook.latestChapterTitle)
+            tvIntro.text = translateBook.getDisplayIntro()
+            upTvBookshelf()
+            val kinds = translateBook.getKindList()
+            if (kinds.isEmpty()) {
+                lbKind.gone()
+            } else {
+                lbKind.visible()
+                lbKind.setLabels(kinds)
+            }
+            upGroup(book.group)
         }
-        upGroup(book.group)
+
     }
 
     private fun showCover(book: Book) {
@@ -268,12 +272,12 @@ class BookInfoActivity :
                 viewModel.bookData.value?.let {
                     if (it.durChapterIndex < chapterList.size) {
                         binding.tvToc.text =
-                            getString(R.string.toc_s, chapterList[it.durChapterIndex].title)
+                            getString(R.string.toc_s, chapterList[it.durChapterIndex].getTranslateTitle())
                     } else {
-                        binding.tvToc.text = getString(R.string.toc_s, chapterList.last().title)
+                        binding.tvToc.text = getString(R.string.toc_s, chapterList.last().getTranslateTitle())
                     }
                     binding.tvLasted.text =
-                        getString(R.string.lasted_show, chapterList.last().title)
+                        getString(R.string.lasted_show, chapterList.last().getTranslateTitle())
                 }
             }
         }

@@ -15,7 +15,9 @@ import net.asianovel.reader.model.analyzeRule.AnalyzeUrl
 import net.asianovel.reader.model.analyzeRule.RuleData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
+import net.asianovel.reader.model.translation.Translation
 import kotlin.coroutines.CoroutineContext
 
 @Suppress("MemberVisibilityCanBePrivate")
@@ -70,7 +72,9 @@ object WebBook {
             baseUrl = res.url,
             body = res.body,
             isSearch = true
-        )
+        ).also {
+            Translation.translateSearchBook(bookSource.bookSourceLang,it)
+        }
     }
 
     /**
@@ -118,7 +122,9 @@ object WebBook {
             baseUrl = res.url,
             body = res.body,
             isSearch = false
-        )
+        ).also {
+            Translation.translateSearchBook(bookSource.bookSourceLang,it)
+        }
     }
 
     /**
@@ -176,7 +182,9 @@ object WebBook {
                 canReName = canReName
             )
         }
-        return book
+        return book.also {
+            Translation.translateBook(bookSource.bookSourceLang,it)
+        }
     }
 
     /**
@@ -267,6 +275,7 @@ object WebBook {
         needSave: Boolean = true,
         context: CoroutineContext = Dispatchers.IO
     ): Coroutine<String> {
+
         return Coroutine.async(scope, context) {
             getContentAwait(bookSource, book, bookChapter, nextChapterUrl, needSave)
         }
@@ -279,6 +288,7 @@ object WebBook {
         nextChapterUrl: String? = null,
         needSave: Boolean = true
     ): String {
+
         if (bookSource.getContentRule().content.isNullOrEmpty()) {
             Debug.log(bookSource.bookSourceUrl, "⇒正文规则为空,使用章节链接:${bookChapter.url}")
             return bookChapter.url
@@ -297,7 +307,9 @@ object WebBook {
                 body = book.tocHtml,
                 nextChapterUrl = nextChapterUrl,
                 needSave = needSave
-            )
+            ).let {
+                Translation.translateContent(bookSource.bookSourceLang,book,bookChapter,it)
+            }
         } else {
             val analyzeUrl = AnalyzeUrl(
                 mUrl = bookChapter.getAbsoluteURL(),
@@ -327,7 +339,9 @@ object WebBook {
                 body = res.body,
                 nextChapterUrl = nextChapterUrl,
                 needSave = needSave
-            )
+            ).let {
+                Translation.translateContent(bookSource.bookSourceLang,book,bookChapter,it)
+            }
         }
     }
 

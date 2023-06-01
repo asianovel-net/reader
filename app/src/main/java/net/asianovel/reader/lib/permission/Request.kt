@@ -1,14 +1,21 @@
 package net.asianovel.reader.lib.permission
 
+import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.PixelFormat
 import android.os.Build
 import android.os.Environment
+import android.provider.Settings
+import android.view.View
+import android.view.WindowManager
+import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleService
 import net.asianovel.reader.R
 import net.asianovel.reader.utils.startActivity
 import splitties.init.appCtx
@@ -196,6 +203,7 @@ internal class Request : OnRequestPermissionsResultCallback {
             putExtra(PermissionActivity.KEY_INPUT_PERMISSIONS, deniedPermissions)
         }
     }
+
 
     private fun onPermissionsGranted() {
         try {

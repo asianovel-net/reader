@@ -26,6 +26,9 @@ data class BookSource(
     var bookSourceUrl: String = "",
     // 名称
     var bookSourceName: String = "",
+
+    @ColumnInfo(defaultValue = "en")
+    var bookSourceLang: String = "en",
     // 分组
     var bookSourceGroup: String? = null,
     // 类型，0 文本，1 音频, 2 图片, 3 文件（指的是类似知轩藏书只提供下载的网站）
@@ -194,6 +197,7 @@ data class BookSource(
 
     fun equal(source: BookSource) =
         equal(bookSourceName, source.bookSourceName)
+                && equal(bookSourceLang, source.bookSourceLang)
                 && equal(bookSourceUrl, source.bookSourceUrl)
                 && equal(bookSourceGroup, source.bookSourceGroup)
                 && bookSourceType == source.bookSourceType

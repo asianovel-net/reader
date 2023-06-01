@@ -4,16 +4,22 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import net.asianovel.reader.R
+import net.asianovel.reader.base.AppContextWrapper
 import net.asianovel.reader.base.VMBaseActivity
 import net.asianovel.reader.data.entities.Book
 import net.asianovel.reader.data.entities.SearchBook
 import net.asianovel.reader.databinding.ActivityExploreShowBinding
 import net.asianovel.reader.databinding.ViewLoadMoreBinding
+import net.asianovel.reader.help.DefaultData
+import net.asianovel.reader.help.book.BookHelp
+import net.asianovel.reader.help.config.AppConfig
+import net.asianovel.reader.model.translation.Translation
 import net.asianovel.reader.ui.book.info.BookInfoActivity
 import net.asianovel.reader.ui.widget.recycler.LoadMoreView
 import net.asianovel.reader.ui.widget.recycler.VerticalDivider
 import net.asianovel.reader.utils.startActivity
 import net.asianovel.reader.utils.viewbindingdelegate.viewBinding
+import splitties.init.appCtx
 
 class ExploreShowActivity : VMBaseActivity<ActivityExploreShowBinding, ExploreShowViewModel>(),
     ExploreShowAdapter.CallBack {
@@ -25,6 +31,11 @@ class ExploreShowActivity : VMBaseActivity<ActivityExploreShowBinding, ExploreSh
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         binding.titleBar.title = intent.getStringExtra("exploreName")
+        val toLanguage   = Translation.getToLanguage()
+        val fromLanguage = BookHelp.detectLang(binding.titleBar.title.toString())
+        if (AppConfig.translateMode != "off" && !toLanguage.equals(fromLanguage,true)) {
+            binding.titleBar.title = DefaultData.zhEnTerms.get(binding.titleBar.title) ?: binding.titleBar.title
+        }
         initRecyclerView()
         viewModel.booksData.observe(this) { upData(it) }
         viewModel.initData(intent)
@@ -69,18 +80,21 @@ class ExploreShowActivity : VMBaseActivity<ActivityExploreShowBinding, ExploreSh
     }
 
     private fun upData(books: List<SearchBook>) {
-        loadMoreView.stopLoad()
-        if (books.isEmpty() && adapter.isEmpty()) {
-            loadMoreView.noMore(getString(R.string.empty))
-        } else if (books.isEmpty()) {
-            loadMoreView.noMore()
-        } else if (adapter.getItems().contains(books.first()) && adapter.getItems()
-                .contains(books.last())
-        ) {
-            loadMoreView.noMore()
-        } else {
-            adapter.addItems(books)
+        Translation.getTranslateSearchBook(books).let {
+            loadMoreView.stopLoad()
+            if (it.isEmpty() && adapter.isEmpty()) {
+                loadMoreView.noMore(getString(R.string.empty))
+            } else if (it.isEmpty()) {
+                loadMoreView.noMore()
+            } else if (adapter.getItems().contains(it.first()) && adapter.getItems()
+                    .contains(it.last())
+            ) {
+                loadMoreView.noMore()
+            } else {
+                adapter.addItems(it)
+            }
         }
+
     }
 
     override fun isInBookshelf(name: String, author: String): Boolean {
