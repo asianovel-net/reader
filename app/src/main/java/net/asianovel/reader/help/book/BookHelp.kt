@@ -3,8 +3,6 @@ package net.asianovel.reader.help.book
 import android.graphics.BitmapFactory
 import android.os.ParcelFileDescriptor
 import androidx.documentfile.provider.DocumentFile
-import com.github.pemistahl.lingua.api.*
-import com.github.pemistahl.lingua.api.Language.*
 import net.asianovel.reader.constant.AppLog
 import net.asianovel.reader.constant.AppPattern
 import net.asianovel.reader.constant.EventBus
@@ -511,17 +509,25 @@ object BookHelp {
             .replace(regexOther, "")
     }
 
-     fun detectLang(text:String): String {
-        val detector: LanguageDetector = LanguageDetectorBuilder.fromLanguages(ENGLISH, CHINESE).build()
+    fun detectLang(text:String): String {
         text.lines().forEach {
+            var letterLen = 0
+            var enLen = 0
             if (it.trim().isNotEmpty()) {
-                val detectedLanguage = detector.detectLanguageOf(text)
-                if (detectedLanguage.name != UNKNOWN.name) {
-                    return detectedLanguage.isoCode639_1.name
+                it.forEach { c ->
+                    if (c in 'a'..'z' || c in 'A'..'Z'){
+                        enLen++
+                    }
+                    if (Character.isLetter(c)) {
+                        letterLen++
+                    }
+                }
+                if (enLen*100/letterLen > 50) {
+                    return "en"
                 }
             }
         }
-        return CHINESE.isoCode639_1.name
+        return "zh"
     }
 
 
