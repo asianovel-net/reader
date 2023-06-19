@@ -25,7 +25,7 @@
             android:title="Google web translate url" />
     </net.asianovel.reader.lib.prefs.PreferenceCategory>
 
-    <!--net.asianovel.reader.lib.prefs.PreferenceCategory
+    <net.asianovel.reader.lib.prefs.PreferenceCategory
         android:title="ChatGpt translate"
         app:allowDividerBelow="false"
         app:iconSpaceReserved="false"
@@ -36,7 +36,7 @@
         <net.asianovel.reader.lib.prefs.Preference
             android:key="chatGptToken"
             android:title="ChatGpt token" />
-    </net.asianovel.reader.lib.prefs.PreferenceCategory -->
+    </net.asianovel.reader.lib.prefs.PreferenceCategory>
 
 
 </androidx.preference.PreferenceScreen>

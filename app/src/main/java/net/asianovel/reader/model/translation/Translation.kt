@@ -1,8 +1,10 @@
 package net.asianovel.reader.model.translation
 
 import androidx.collection.LruCache
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import kotlinx.coroutines.delay
 import net.asianovel.reader.base.AppContextWrapper
-import net.asianovel.reader.constant.PreferKey
 import net.asianovel.reader.data.appDb
 import net.asianovel.reader.data.entities.Book
 import net.asianovel.reader.data.entities.BookChapter
@@ -11,7 +13,6 @@ import net.asianovel.reader.exception.NoStackTraceException
 import net.asianovel.reader.help.CacheManager
 import net.asianovel.reader.help.book.BookHelp
 import net.asianovel.reader.help.config.AppConfig
-import net.asianovel.reader.help.coroutine.Coroutine
 import net.asianovel.reader.help.http.*
 import net.asianovel.reader.model.translation.openai.OpenAIConstants
 import net.asianovel.reader.model.translation.openai.OpenAIRequest
@@ -199,7 +200,7 @@ object Translation {
     private suspend fun batchTranslate(batchSize:Int=10,from:String="zh",to:String="en",textList:List<String>):Boolean{
         textList.chunked(batchSize).forEach {
 
-            val resList:List<String>? =   when (appCtx.getPrefString(PreferKey.language)){
+            val resList:List<String>? =   when (AppConfig.translateMode){
                 "chatGpt" -> translateByChatGpt(from,to,it)
                 else -> translateByGoogleWeb(from,to,it)
             }
@@ -245,7 +246,7 @@ object Translation {
         val sl = googleWebConvert(from)
         val tl = googleWebConvert(to)
 
-        val url = "https://translate.google.com/?sl=$sl&tl=$tl&text=$text&op=translate"
+        val url = AppConfig.googleWebTranslateUrl+"/?sl=$sl&tl=$tl&text=$text&op=translate"
         val jsStr = "(function() { return document.querySelectorAll('div[aria-live] >div >div')[0].innerText; })();"
         BackstageWebView(
             url = url,
@@ -256,45 +257,56 @@ object Translation {
     }
 
 
-    private fun translateByChatGpt(from: String="zh",to: String="en",textList: List<String>) :List<String> {
+    private suspend fun translateByChatGpt(from: String="zh",to: String="en",textList: List<String>) :List<String> {
         var resList = ArrayList<String>()
-        var rolePrompt = "You are a professional translation engine, please translate the text into a colloquial, professional, elegant and fluent content, without the style of machine translation. You must only translate the text content, never interpret it."
-        var commandPrompt ="Translate from $from to $to."
+        var commandPrompt ="Translate this ${textList.size} lines from $from to $to preserving its number."
         var contentPrompt = StringBuffer()
-        var messageList  = ArrayList<OpenAIRequest.Message>()
         textList.forEachIndexed { index, text ->
-            contentPrompt.append("$index. $text")
+            contentPrompt.append("$index. $text").append(" ")
         }
         val headerMap = HashMap<String, String>()
-        headerMap[OpenAIConstants.AUTHORIZATION] = OpenAIConstants.TOKEN
+        headerMap[OpenAIConstants.AUTHORIZATION] = AppConfig.chatGptToken
         headerMap["Content-Type"] = "application/json"
-        Coroutine.async {
-            val body =okHttpClient.newCallStrResponse {
+        val body = okHttpClient.newCallStrResponse {
                 addHeaders(headerMap)
-                val ai = OpenAIRequest()
-                ai.model = OpenAIConstants.MODEL
-                var rolePromptMessage = ai.Message()
-                rolePromptMessage.role = OpenAIConstants.SYSTEM_ROLE
-                rolePromptMessage.content = rolePrompt
-                messageList.add(rolePromptMessage)
-                var cmdPromptMessage = ai.Message()
-                cmdPromptMessage.role = OpenAIConstants.USER_ROLE
-                cmdPromptMessage.content = commandPrompt
-                messageList.add(cmdPromptMessage)
-                var contentPromptMessage = ai.Message()
-                contentPromptMessage.role = OpenAIConstants.USER_ROLE
-                contentPromptMessage.content = contentPrompt.toString()
-                messageList.add(contentPromptMessage)
-                ai.messages = messageList
+                url("https://api.openai.com/v1/chat/completions")
+                postJson(GSON.toJson(buildOpenRequest(commandPrompt,contentPrompt.toString())))
+        }.body
 
-                ai.frequency_penalty = 0
-                ai.presence_penalty = 0
-                url("https://api.openai.com/v1/completions")
-                postJson(GSON.toJson(ai))
-            }.body
-            var openAIResponse = GSON.fromJsonObject<OpenAIResponse>(body)
+        GSON.fromJsonObject<OpenAIResponse>(body).getOrNull()?.let { openAIResponse ->
+            openAIResponse.choices?.forEach { choice ->
+                choice.message?.let {message ->
+                    message.content?.let {
+                        it.lines().filter { it.isNotBlank() }.forEachIndexed { index, s ->
+                            val res = s.replace("$index.","").trim()
+                            resList.add(res)
+                        }
+                    }
+                }
+            }
+
         }
+        if (resList.isEmpty()) delay(10000)
         return resList
+    }
+
+    private fun buildOpenRequest(commandPrompt:String,contentPrompt:String):OpenAIRequest {
+        val messageList = ArrayList<OpenAIRequest.Message>()
+        val ai = OpenAIRequest()
+        ai.model = OpenAIConstants.MODEL
+
+        var rolePromptMessage = ai.Message(OpenAIConstants.SYSTEM_ROLE,AppConfig.chatGptRolePrompt)
+        messageList.add(rolePromptMessage)
+
+        var cmdPromptMessage = ai.Message(OpenAIConstants.USER_ROLE,commandPrompt)
+        messageList.add(cmdPromptMessage)
+
+        var contentPromptMessage = ai.Message(OpenAIConstants.USER_ROLE,contentPrompt)
+        messageList.add(contentPromptMessage)
+        ai.messages = messageList
+        ai.frequency_penalty = 0
+        ai.presence_penalty = 0
+        return ai
     }
 
     private fun getTranslatedString(text: String?): String {

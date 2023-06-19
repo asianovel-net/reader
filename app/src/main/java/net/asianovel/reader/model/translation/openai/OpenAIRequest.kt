@@ -11,9 +11,9 @@ class OpenAIRequest {
     var stop: List<String>? = null
     var messages: List<Message>? = null
 
-    inner class Message {
-        var role: String? = null
-        var content: String? = null
+    inner class Message (role:String,content:String){
+        var role: String = role
+        var content: String = content
     }
 }
 
