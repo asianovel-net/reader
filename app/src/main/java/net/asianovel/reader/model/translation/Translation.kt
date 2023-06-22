@@ -150,7 +150,7 @@ object Translation {
                 if (enableTranslate(it.bookSourceLang)) {
                     bookChapterList.forEachIndexed { index, bookChapter ->
                         val oldBookChapterTitle = bookChapter.title
-                        bookChapter.title = "chapter $index"
+                        bookChapter.title = "chapter "+(index+1)
                         CacheManager.get(getTranslationKey(book.bookUrl,oldBookChapterTitle))?.let {
                             bookChapter.title = it
                         }
@@ -191,7 +191,7 @@ object Translation {
                 resList = filterTextList(resList)
                 res = batchTranslate(5,from,to,resList)
                 if (!res) {
-                    throw NoStackTraceException("google web translate error")
+                    throw NoStackTraceException("translate error !!!")
                 }
             }
         }
@@ -258,6 +258,7 @@ object Translation {
 
 
     private suspend fun translateByChatGpt(from: String="zh",to: String="en",textList: List<String>) :List<String> {
+        if (AppConfig.chatGptToken.isNullOrBlank()) throw NoStackTraceException("chatgpt token is empty !!!")
         var resList = ArrayList<String>()
         var commandPrompt ="Translate this ${textList.size} lines from $from to $to preserving its number."
         var contentPrompt = StringBuffer()
@@ -284,7 +285,6 @@ object Translation {
                     }
                 }
             }
-
         }
         if (resList.isEmpty()) delay(10000)
         return resList

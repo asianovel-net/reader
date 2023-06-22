@@ -35,7 +35,8 @@
             android:title="ChatGpt Role prompt" />
         <net.asianovel.reader.lib.prefs.Preference
             android:key="chatGptToken"
-            android:title="ChatGpt token" />
+            android:title="ChatGpt token"
+            android:summary="Bearer xxxxxxxxxxxxxxxxxxxx"/>
     </net.asianovel.reader.lib.prefs.PreferenceCategory>
 
 

@@ -138,7 +138,7 @@ data class BookChapter(
         val toLanguage   = Translation.getToLanguage()
         val fromLanguage = BookHelp.detectLang(title)
         if (AppConfig.translateMode != "off" && !toLanguage.equals(fromLanguage,true)) {
-            var translateChapterTitle = "Chapter ${index}"
+            var translateChapterTitle = "Chapter "+index
             CacheManager.get(Translation.getTranslationKey(bookUrl, title))?.let {
                 translateChapterTitle = it
             }
