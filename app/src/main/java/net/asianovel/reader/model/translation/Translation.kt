@@ -186,18 +186,27 @@ object Translation {
         var res = batchTranslate(30,from,to,resList)
         if (!res) {
             resList = filterTextList(resList)
-            res = batchTranslate(10,from,to,resList)
+            res = batchTranslate(20,from,to,resList)
             if (!res) {
                 resList = filterTextList(resList)
-                res = batchTranslate(5,from,to,resList)
+                res = batchTranslate(10,from,to,resList)
                 if (!res) {
-                    throw NoStackTraceException("translate error !!!")
+                    resList = filterTextList(resList)
+                    res = batchTranslate(5, from, to, resList)
+                    if (!res) {
+                        throw NoStackTraceException("translate error !!!")
+                    }
                 }
             }
         }
     }
 
     private suspend fun batchTranslate(batchSize:Int=10,from:String="zh",to:String="en",textList:List<String>):Boolean{
+        if (from.equals("zh",true)){
+            val strLength = textList.chunked(batchSize).get(0).joinToString("").length
+            if (strLength>2000) return false
+        }
+
         textList.chunked(batchSize).forEach {
 
             val resList:List<String>? =   when (AppConfig.translateMode){
